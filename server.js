@@ -22,6 +22,7 @@ app.use(express.json());
 //Static File Setup
 app.use(express.static(path.join(__dirname, "public/src")));
 
+//Display index file
 app.get("/", (req, res) => {
   res.sendFile("index.html");
   res.status(200);
