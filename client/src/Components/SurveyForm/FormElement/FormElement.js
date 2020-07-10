@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Form } from "reactstrap";
-import FormButtons from "../FormButtons/FormButtons";
+import FormButtons from "./FormButtons/FormButtons";
 
 export default class FormElement extends Component {
   render() {

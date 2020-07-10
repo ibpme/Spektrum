@@ -9,30 +9,32 @@ const FormButtons = (props) => {
       <ButtonGroup>
         <p className="p-2 m-auto text-danger">Disagree</p>
         <Button
-          className="rounded-left"
-          color="primary"
+          className="rounded m-2"
+          color="secondary"
           onClick={() => setRSelected(1)}
           active={rSelected === 1}
         >
           1
         </Button>
         <Button
-          color="primary"
+          className="rounded m-2"
+          color="secondary"
           onClick={() => setRSelected(2)}
           active={rSelected === 2}
         >
           2
         </Button>
         <Button
-          color="primary"
+          className="rounded m-2"
+          color="secondary"
           onClick={() => setRSelected(3)}
           active={rSelected === 3}
         >
           3
         </Button>
         <Button
-          className="rounded-right"
-          color="primary"
+          className="rounded m-2"
+          color="secondary"
           onClick={() => setRSelected(4)}
           active={rSelected === 4}
         >
