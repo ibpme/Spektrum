@@ -1,1 +1,0 @@
-http://127.0.0.1:3000/?name=Iman-Budi+Pranakasih&email=ibpranakasih%40gmail.com&place=Kota+Jakarta+Pusat&gender=male

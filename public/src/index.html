@@ -25,6 +25,7 @@
       integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
       crossorigin="anonymous"
     ></script>
+    <script src="./script/client.js"></script>
   </head>
   <body class="bg-light">
     <section
@@ -49,7 +50,7 @@
     <section
       class="container text-center d-flex w-80 h-100 p-3 mx-auto flex-column"
     >
-      <form class="text-left p-2" action="/sendUser" method="POST">
+      <form class="text-left p-2" action="./postUser" method="POST">
         <div class="form-group">
           <label for="inputUser">Full Name</label>
           <input
@@ -62,7 +63,7 @@
             placeholder="Name"
           />
         </div>
-        <div class="form-group">
+        <div class="form-group is-invalid">
           <label for="inputEmail">Email</label>
           <input
             required
@@ -121,6 +122,9 @@
         >
           Submit
         </button>
+        <div style="display: none;" id="feedback" class="invalid-feedback">
+          User already exist!
+        </div>
       </form>
     </section>
   </body>
