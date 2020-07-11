@@ -3,6 +3,14 @@ const app = express();
 require("dotenv").config("/.env");
 const path = require("path");
 
+// //Disable CORS by setting proxy
+const cors = require("cors");
+app.use(cors());
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   next();
+// });
+
 //Connection to Database
 const mongoose = require("mongoose");
 const url = "mongodb://127.0.0.1:27017/spektrum";
@@ -30,10 +38,10 @@ app.get("/", (req, res) => {
 
 //Use the postUser Route
 const postUser = require("./routes/postUser");
-app.use("/postUser", postUser);
-//User the getUser Route
-const getUser = require("./routes/getUser");
-app.use("/getUser", getUser);
+app.use("/api/postUser", postUser);
+//User the checkUser Route
+const checkUser = require("./routes/checkUser");
+app.use("/api/checkUser", checkUser);
 
 app.listen(process.env.PORT, () => {
   console.log(`Listening on PORT ${process.env.PORT}`);
