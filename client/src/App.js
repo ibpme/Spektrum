@@ -11,7 +11,7 @@ export default class App extends Component {
     this.state = {
       displayHeader: true,
       displayUser: true,
-      displaySurvey: false,
+      displaySurvey: true,
     };
     this.submit = this.submit.bind(this);
   }

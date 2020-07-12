@@ -3,6 +3,21 @@ import { Form } from "reactstrap";
 import FormButtons from "./FormButtons/FormButtons";
 
 export default class FormElement extends Component {
+  constructor(props) {
+    super(props);
+    this.setAnswer = this.setAnswer.bind(this);
+  }
+  setAnswer(num) {
+    const key = Number(this.props.someId);
+    console.log(this.props.someId);
+    const answerObject = {
+      id: key,
+      answer: num,
+    };
+    console.log("In Form Element");
+    console.log(answerObject);
+    this.props.clickAnswer(answerObject);
+  }
   render() {
     return (
       <Form>
@@ -11,7 +26,7 @@ export default class FormElement extends Component {
           distinctio architecto dignissimos possimus? Officia sequi numquam
           eligendi ullam! Nesciunt qui cupiditate accusamus voluptas commodi.
         </p>
-        <FormButtons />
+        <FormButtons setAnswer={this.setAnswer} />
       </Form>
     );
   }

@@ -7,10 +7,14 @@ export class SurveyForm extends Component {
     this.state = {
       answerArray: [],
     };
-    this.clcikAnswer = this.clcikAnswer.bind(this);
+    this.clickAnswer = this.clickAnswer.bind(this);
   }
-  clickAnswer(answer) {
-    let newAnswer = this.state.answerArray.concat(answer);
+  clickAnswer(answerObject) {
+    let checkAnswerArray = this.state.answerArray;
+    let newAnswer = checkAnswerArray.filter((answer) => {
+      return answer.id !== answerObject.id;
+    });
+    newAnswer.push(answerObject);
     this.setState({ answerArray: newAnswer });
   }
   render() {
@@ -18,8 +22,9 @@ export class SurveyForm extends Component {
       return (
         <div className=".container-fluid cover text-center d-flex w-100 h-100 mt-5 flex-column">
           <SurveyHeader />
-          <FormElement setAnswer={this.clickAnswer} />
-          <FormElement />
+          <FormElement someId="1324123" clickAnswer={this.clickAnswer} />
+          <FormElement someId="5431232" clickAnswer={this.clickAnswer} />
+          <FormElement someId="413234" clickAnswer={this.clickAnswer} />
         </div>
       );
     } else {

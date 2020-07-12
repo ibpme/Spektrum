@@ -1,51 +1,67 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, ButtonGroup } from "reactstrap";
 
-const FormButtons = (props) => {
-  const [rSelected, setRSelected] = useState(null);
+export default class FormButtons extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: null,
+    };
+    this.setRSelected = this.setRSelected.bind(this);
+  }
 
-  return (
-    <div className=".container-md text-center m-auto p-4">
-      <ButtonGroup>
-        <p className="p-2 m-auto text-danger">Disagree</p>
-        <Button
-          className="rounded m-2"
-          color="secondary"
-          onClick={() => setRSelected(1)}
-          active={rSelected === 1}
-        >
-          1
-        </Button>
-        <Button
-          className="rounded m-2"
-          color="secondary"
-          onClick={() => setRSelected(2)}
-          active={rSelected === 2}
-        >
-          2
-        </Button>
-        <Button
-          className="rounded m-2"
-          color="secondary"
-          onClick={() => setRSelected(3)}
-          active={rSelected === 3}
-        >
-          3
-        </Button>
-        <Button
-          className="rounded m-2"
-          color="secondary"
-          onClick={() => setRSelected(4)}
-          active={rSelected === 4}
-        >
-          4
-        </Button>
-        <p className="p-2 m-auto text-success">Agree</p>
-      </ButtonGroup>
+  setRSelected(event) {
+    const value = Number(event.target.value);
+    this.setState({ value: value });
+    this.props.setAnswer(value);
+  }
 
-      <p>Selected: {rSelected}</p>
-    </div>
-  );
-};
+  render() {
+    return (
+      <div className=".container-md text-center m-auto p-4">
+        <ButtonGroup>
+          <p className="p-2 m-auto text-danger">Disagree</p>
+          <Button
+            value="1"
+            className="rounded m-2"
+            color="secondary"
+            onClick={this.setRSelected}
+            active={this.state.value === 1}
+          >
+            1
+          </Button>
+          <Button
+            value="2"
+            className="rounded m-2"
+            color="secondary"
+            onClick={this.setRSelected}
+            active={this.state.value === 2}
+          >
+            2
+          </Button>
+          <Button
+            value="3"
+            className="rounded m-2"
+            color="secondary"
+            onClick={this.setRSelected}
+            active={this.state.value === 3}
+          >
+            3
+          </Button>
+          <Button
+            value="4"
+            className="rounded m-2"
+            color="secondary"
+            onClick={this.setRSelected}
+            active={this.state.value === 4}
+          >
+            4
+          </Button>
+          <p className="p-2 m-auto text-success">Agree</p>
+        </ButtonGroup>
 
-export default FormButtons;
+        <p>Selected: {this.state.value}</p>
+      </div>
+    );
+  }
+}
