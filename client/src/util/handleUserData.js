@@ -4,7 +4,7 @@ const checkUserUrl = "http://localhost:5000/api/checkUser";
 const SendUserData = {
   handleUserData(userData) {
     //Check if email/userdata is a duplicate in the database
-    fetch(checkUserUrl, {
+    return fetch(checkUserUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -15,7 +15,7 @@ const SendUserData = {
       .then((checkDuplicate) => {
         if (!checkDuplicate.duplicate) {
           console.log(checkDuplicate);
-          fetch(postUserUrl, {
+          return fetch(postUserUrl, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -24,12 +24,29 @@ const SendUserData = {
           })
             .then((createUser) => createUser.json())
             .then((checkCreated) => {
-              return checkCreated.created;
+              console.log(checkCreated);
+              return checkCreated;
+            })
+            .catch((err) => {
+              console.log(err);
+              return {
+                status: "Cannot create user data !",
+                created: false,
+              };
             });
         } else {
-          console.log("Duplicate User Exist");
-          return false;
+          return {
+            status: "User already exist !",
+            created: false,
+          };
         }
+      })
+      .catch((err) => {
+        console.log(err);
+        return {
+          status: "Cannot get user information !",
+          created: false,
+        };
       });
   },
 };

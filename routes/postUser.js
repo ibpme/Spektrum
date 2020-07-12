@@ -18,8 +18,9 @@ router.post("/", async (req, res) => {
         status: "Validation Error",
         created: false,
       });
+    } else {
+      res.status(400);
     }
-    res.status(400);
   }
 });
 

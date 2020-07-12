@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import SendUserData from "../../util/handleUserData";
+import AlertBar from "./AlertBar";
 
 export class UserForm extends Component {
   constructor(props) {
@@ -25,16 +26,22 @@ export class UserForm extends Component {
     const userData = this.state;
     console.log(`In handle Submit:`);
     console.log(userData);
-    SendUserData.handleUserData(userData);
+    let status;
+    let isCreated;
+    SendUserData.handleUserData(userData).then((response) => {
+      status = response.status;
+      isCreated = response.created;
+      console.log(status + isCreated);
+      this.setState({
+        status: status,
+        isCreated: isCreated,
+      });
+    });
   }
 
   render() {
     return (
       <div className="container text-center d-flex w-80 h-100 p-3 mx-auto flex-column bg-light">
-        <p>
-          {this.state.name} {this.state.email}
-          {this.state.place} {this.state.gender}
-        </p>
         <Form onSubmit={this.handleSubmit} className="text-left p-2">
           <FormGroup>
             <Label for="inputUser">Full Name</Label>
@@ -100,6 +107,10 @@ export class UserForm extends Component {
           <Button type="submit" className="my-2">
             Submit
           </Button>
+          <AlertBar
+            userCreated={this.state.isCreated}
+            status={this.state.status}
+          />
         </Form>
       </div>
     );

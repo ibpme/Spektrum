@@ -3,13 +3,9 @@ const app = express();
 require("dotenv").config("/.env");
 const path = require("path");
 
-// //Disable CORS by setting proxy
+// //Disable CORS
 const cors = require("cors");
 app.use(cors());
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   next();
-// });
 
 //Connection to Database
 const mongoose = require("mongoose");
