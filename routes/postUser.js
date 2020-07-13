@@ -7,9 +7,9 @@ router.post("/", async (req, res) => {
   try {
     const userData = new UserData(req.body);
     const createdUser = await userData.save();
-    console.log(createdUser);
     res.status(201).json({
       status: "User Created",
+      userId: createdUser._id,
       created: true,
     });
   } catch (error) {

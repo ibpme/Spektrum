@@ -10,6 +10,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       displaySurvey: false,
+      userId: null,
     };
     this.submit = this.submit.bind(this);
   }
@@ -18,8 +19,10 @@ export default class App extends Component {
     return SendUserData.handleUserData(userData)
       .then((response) => {
         if (response.created) {
+          const userId = response.userId;
           this.setState({
             displaySurvey: true,
+            userId: userId,
           });
         }
         return response;
