@@ -8,10 +8,10 @@ export default class FormElement extends Component {
     this.setAnswer = this.setAnswer.bind(this);
   }
   setAnswer(num) {
-    const key = Number(this.props.someId);
-    console.log(this.props.someId);
+    const formId = this.props.formId;
+    console.log(this.props.formId);
     const answerObject = {
-      id: key,
+      id: formId,
       answer: num,
     };
     console.log("In Form Element");
@@ -21,11 +21,7 @@ export default class FormElement extends Component {
   render() {
     return (
       <Form>
-        <p className="text-align w-75 p-4 m-auto">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Et obcaecati
-          distinctio architecto dignissimos possimus? Officia sequi numquam
-          eligendi ullam! Nesciunt qui cupiditate accusamus voluptas commodi.
-        </p>
+        <p className="text-align w-75 p-4 m-auto">{this.props.question}</p>
         <FormButtons setAnswer={this.setAnswer} />
       </Form>
     );

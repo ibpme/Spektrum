@@ -38,6 +38,9 @@ app.use("/api/postUser", postUser);
 //User the checkUser Route
 const checkUser = require("./routes/checkUser");
 app.use("/api/checkUser", checkUser);
+//Use the getQuestionRoute
+const getQuestions = require("./routes/getQuestions");
+app.use("/api/getQuestions", getQuestions);
 
 app.listen(process.env.PORT, () => {
   console.log(`Listening on PORT ${process.env.PORT}`);
