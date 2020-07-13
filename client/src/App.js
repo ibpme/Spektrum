@@ -4,6 +4,7 @@ import UserForm from "./Components/UserForm/UserForm";
 import SurveyForm from "./Components/SurveyForm/SurveyForm";
 import Header from "./Components/Header/Header";
 import SendUserData from "./util/handleUserData";
+import SendFormData from "./util/handleFormData";
 
 export default class App extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ export default class App extends Component {
       userId: null,
     };
     this.submit = this.submit.bind(this);
+    this.submitForm = this.submitForm.bind(this);
   }
 
   submit(userData) {
@@ -32,11 +34,25 @@ export default class App extends Component {
       });
   }
 
+  submitForm(formData) {
+    const attachUserId = {
+      userId: this.state.userId,
+      data: formData,
+    };
+    return SendFormData.handleFormData(attachUserId).then((response) => {
+      if (response.status) {
+        console.log(response.data);
+      } else {
+        console.log(response);
+      }
+    });
+  }
+
   render() {
     if (this.state.displaySurvey) {
       return (
         <div>
-          <SurveyForm />
+          <SurveyForm onSubmit={this.submitForm} />
         </div>
       );
     } else {

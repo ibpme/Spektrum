@@ -101,10 +101,7 @@ export class UserForm extends Component {
           <Button type="submit" className="my-2">
             Submit
           </Button>
-          <AlertBar
-            userCreated={this.state.isCreated}
-            status={this.state.status}
-          />
+          <AlertBar created={this.state.isCreated} status={this.state.status} />
         </Form>
       </div>
     );

@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const path = require("path");
 const UserData = require("../models/UserData");
 
 router.post("/", async (req, res) => {

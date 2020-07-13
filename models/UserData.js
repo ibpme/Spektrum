@@ -5,6 +5,8 @@ const userDataSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
   place: { type: String, required: true },
+  answers: { type: Array },
+  result: { type: Object },
 });
 
 module.exports = mongoose.model("UserData", userDataSchema);
