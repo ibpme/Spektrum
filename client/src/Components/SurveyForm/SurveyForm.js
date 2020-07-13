@@ -25,12 +25,16 @@ export class SurveyForm extends Component {
       .then((response) => {
         const listQuestions = response;
         this.setState({ data: listQuestions });
+      })
+      .catch((error) => {
+        console.log(error);
+        this.setState({ data: [] });
       });
   }
 
   //Fix Map issue and getting form questions to the Front_end
   render() {
-    if (this.props.display && this.state.data.length !== 0) {
+    if (this.state.data.length !== 0) {
       const formElement = this.state.data.map((list) => {
         return (
           <FormElement
@@ -47,7 +51,12 @@ export class SurveyForm extends Component {
           {formElement}
         </div>
       );
-    } else return <div></div>;
+    } else
+      return (
+        <div>
+          <h1>Loading Questions...</h1>
+        </div>
+      );
   }
 }
 
