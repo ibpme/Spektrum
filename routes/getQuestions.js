@@ -17,27 +17,26 @@ router.get("/listAll", async (req, res) => {
   }
 });
 
-// This route is only open to upload question data
-router.post("/post", async (req, res) => {
-  try {
-    console.log(req.body);
-    const questionData = new QuestionsData(req.body);
-    const createdQuestion = await questionData.save();
-    console.log(createdQuestion);
-    res.status(201).json({
-      status: "Question Created",
-      created: true,
-    });
-  } catch (error) {
-    if (error.name === "ValidationError") {
-      res.status(422).json({
-        status: "Validation Error",
-        created: false,
-      });
-    } else {
-      res.status(400);
-    }
-  }
-});
+// router.post("/post", async (req, res) => {
+//   try {
+//     console.log(req.body);
+//     const questionData = new QuestionsData(req.body);
+//     const createdQuestion = await questionData.save();
+//     console.log(createdQuestion);
+//     res.status(201).json({
+//       status: "Question Created",
+//       created: true,
+//     });
+//   } catch (error) {
+//     if (error.name === "ValidationError") {
+//       res.status(422).json({
+//         status: "Validation Error",
+//         created: false,
+//       });
+//     } else {
+//       res.status(400);
+//     }
+//   }
+// });
 
 module.exports = router;

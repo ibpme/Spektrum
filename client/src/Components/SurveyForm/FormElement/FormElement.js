@@ -9,13 +9,10 @@ export default class FormElement extends Component {
   }
   setAnswer(num) {
     const formId = this.props.formId;
-    console.log(this.props.formId);
     const answerObject = {
       id: formId,
       answer: num,
     };
-    console.log("In Form Element");
-    console.log(answerObject);
     this.props.clickAnswer(answerObject);
   }
   render() {

@@ -3,7 +3,6 @@ import Plot from "react-plotly.js";
 
 export class Results extends Component {
   render() {
-    console.log(this.props.results);
     return (
       <div className=".container text-center p-3 mx-auto flex-column">
         <Plot

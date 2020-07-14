@@ -15,21 +15,16 @@ router.post("/", async (req, res) => {
       const associateQuestion = await QuestionData.findOne({ _id: data.id });
       if (associateQuestion.axis === "x") {
         xValue += data.answer * associateQuestion.argument;
-        console.log("x:" + xValue);
       } else if (associateQuestion.axis === "y") {
         yValue += data.answer * associateQuestion.argument;
-        console.log("y:" + yValue);
-      } else {
-        console.log("no argument value");
       }
       userData.results = {
         x: xValue,
         y: yValue,
       };
     }
-    console.log(userData.results);
     await userData.save(function (err) {
-      console.log(err);
+      console.error(err);
     });
     res.status(201).json({
       status: true,
@@ -40,7 +35,7 @@ router.post("/", async (req, res) => {
     });
   } catch {
     (err) => {
-      console.log(err);
+      console.error(err);
       res.status(404).json({
         status: false,
         data: null,
