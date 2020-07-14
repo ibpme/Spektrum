@@ -111,104 +111,104 @@ const listpertanyaanborse = [
 ];
 const listpertanyaankonpro = [
   {
-    number: 1,
+    number: 23,
     question:
       "Saya terganggu dengan orang merokok atau minum (minuman keras) di dekat saya",
     agr: -1,
   },
   {
-    number: 2,
+    number: 24,
     question:
       "Saya setuju bahwa laki-laki adalah (harus menjadi) tulang punggung keluarga",
     agr: -1,
   },
-  { number: 3, question: "Saya tertarik membaca buku-buku filsafat ", agr: 1 },
+  { number: 25, question: "Saya tertarik membaca buku-buku filsafat ", agr: 1 },
   {
-    number: 4,
+    number: 26,
     question: "Saya tertarik mengkaji masalah-masalah sosial atau masa depan ",
     agr: 1,
   },
-  { number: 5, question: "Saya suka mengikuti kegiatan keagamaan", agr: -1 },
+  { number: 27, question: "Saya suka mengikuti kegiatan keagamaan", agr: -1 },
   {
-    number: 6,
+    number: 28,
     question: "Menurut saya mempertahankan budaya adalah hal penting",
     agr: -1,
   },
   {
-    number: 7,
+    number: 29,
     question:
       "Menurut saya paham ateisme merupakan paham yang salah/menyesatkan",
     agr: -1,
   },
-  { number: 8, question: "Menurut saya Bahasa Perancis itu seksi ", agr: 1 },
+  { number: 30, question: "Menurut saya Bahasa Perancis itu seksi ", agr: 1 },
   {
-    number: 9,
+    number: 31,
     question: "Saya sangat memperhatikan feeds Instagram  ",
     agr: 1,
   },
   {
-    number: 10,
+    number: 32,
     question:
       "Menurut saya pernikahan itu merupakan variabel penting dalam kehidupan",
     agr: -1,
   },
   {
-    number: 11,
+    number: 33,
     question:
       "Saya menurut saya wajar saja jika pendidikan suami lebih dari istri",
     agr: -1,
   },
   {
-    number: 12,
+    number: 34,
     question:
       "Saya lebih suka pasangan yang taat dalam beribadah/kegiatan keagamaan dan kuat dalam implementasi agamanya.",
     agr: -1,
   },
   {
-    number: 13,
+    number: 35,
     question:
       "Menurut saya tidak wajar apabila karier/gaji seseorang wanita melebihi pasangan lakinya",
     agr: -1,
   },
-  { number: 14, question: "Menurut saya LGBT itu salah", agr: -1 },
+  { number: 36, question: "Menurut saya LGBT itu salah", agr: -1 },
   {
-    number: 15,
+    number: 37,
     question: "Saya lebih memilih untuk tidak pacaran sebelum nikah",
     agr: -1,
   },
   {
-    number: 16,
+    number: 38,
     question:
       "Menurut saya perempuan harus dipandang sama secara sosial dengan laki-laki ",
     agr: 1,
   },
   {
-    number: 17,
+    number: 39,
     question: "Saya mengikuti gerakan-gerakan feminisme. ",
     agr: 1,
   },
   {
-    number: 18,
+    number: 40,
     question: "“Milik istri adalah milik istri, milik suami adalah milik istri",
     agr: -1,
   },
   {
-    number: 19,
+    number: 41,
     question: "Menurut saya nikah beda agama bukan hal yang salah. ",
     agr: 1,
   },
   {
-    number: 20,
+    number: 42,
     question: "Saya suka mengikuti berita-berita sekilas tentang politik. ",
     agr: 1,
   },
   {
-    number: 21,
+    number: 43,
     question: "Saya lebih ingin nikah tepat waktu daripada nikah pada waktunya",
     agr: -1,
   },
   {
-    number: 22,
+    number: 44,
     question:
       "Menurut saya sastra dan seni tidak begitu penting dalam kehidupan.",
     agr: -1,
@@ -217,7 +217,7 @@ const listpertanyaankonpro = [
 const postQuestion = async function (questionArg) {
   let preBody = {
     number: questionArg.number,
-    axis: "x",
+    axis: "y",
     question: questionArg.question,
     argument: questionArg.agr,
   };
@@ -236,6 +236,8 @@ const postQuestion = async function (questionArg) {
   }
 };
 
-listpertanyaankonpro.forEach((quest) => {
-  postQuestion(quest).then((res) => console.log(res));
-});
+const postQuestions = async (questionArray) => {
+  await questionArray.forEach((quest) => {
+    postQuestion(quest).then((res) => console.log(res));
+  });
+};

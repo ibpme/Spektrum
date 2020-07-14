@@ -47,7 +47,6 @@ export class SurveyForm extends Component {
       });
   }
 
-  //Fix Map issue and getting form questions to the Front_end
   render() {
     if (this.state.data.length !== 0) {
       const formElement = this.state.data.map((list) => {

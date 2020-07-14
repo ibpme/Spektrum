@@ -43,7 +43,7 @@ const getQuestions = require("./routes/getQuestions");
 app.use("/api/getQuestions", getQuestions);
 //Use the postForm route
 const postForm = require("./routes/postForm");
-app.use("./api/postForm", postForm);
+app.use("/api/postForm", postForm);
 
 app.listen(process.env.PORT, () => {
   console.log(`Listening on PORT ${process.env.PORT}`);

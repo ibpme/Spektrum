@@ -1,7 +1,8 @@
 const postFormUrl = "http://localhost:5000/api/postForm";
 
 const SendFormData = {
-  handleUserData(formData) {
+  handleFormData(formData) {
+    console.log(formData);
     return fetch(postFormUrl, {
       method: "POST",
       headers: {
