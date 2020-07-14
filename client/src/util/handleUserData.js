@@ -35,8 +35,9 @@ const SendUserData = {
               };
             });
         } else {
+          console.log(checkDuplicate.userResult);
           return {
-            status: "User already exist !",
+            status: checkDuplicate.userResult,
             created: false,
           };
         }
