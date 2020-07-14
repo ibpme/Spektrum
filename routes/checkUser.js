@@ -4,16 +4,16 @@ const UserData = require("../models/UserData");
 
 router.post("/", async (req, res) => {
   try {
-    const userDuplicate = await UserData.findOne({ email: req.body.email });
+    const userDuplicate = await UserData.find({ email: req.body.email });
 
-    if (userDuplicate.length === 0) {
+    if (userDuplicate.length === 0 || userDuplicate === null) {
       res.status(201).json({
         duplicate: false,
       });
     } else {
       res.status(422).json({
         duplicate: true,
-        userResult: userDuplicate.results,
+        userResult: userDuplicate[0].results,
       });
     }
   } catch (error) {

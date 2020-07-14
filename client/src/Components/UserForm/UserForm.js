@@ -20,6 +20,7 @@ export class UserForm extends Component {
     this.props.onSubmit(this.state).then((response) => {
       const status = response.status;
       const isCreated = response.created;
+      console.log(response.status);
       this.setState({
         status: status,
         isCreated: isCreated,

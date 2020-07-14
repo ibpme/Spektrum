@@ -1,15 +1,16 @@
 const express = require("express");
 const app = express();
-require("dotenv").config("/.env");
 const path = require("path");
+const dotenv = require("dotenv");
 
+dotenv.config();
 // //Disable CORS
 const cors = require("cors");
 app.use(cors());
 
 //Connection to Database
 const mongoose = require("mongoose");
-const url = "mongodb://127.0.0.1:27017/spektrum";
+const url = `${process.env.MONGO_URI}${process.env.MONGO_DB_NAME}`;
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.once("open", (_) => {
@@ -22,9 +23,6 @@ db.on("error", (err) => {
 //Body-Parser Reader
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-//Static File Setup
-app.use(express.static(path.join(__dirname, "public/src")));
 
 //Display index file
 app.get("/", (req, res) => {
@@ -45,6 +43,14 @@ app.use("/api/getQuestions", getQuestions);
 const postForm = require("./routes/postForm");
 app.use("/api/postForm", postForm);
 
+//Static File Setup
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 app.listen(process.env.PORT, () => {
   console.log(`Listening on PORT ${process.env.PORT}`);
 });

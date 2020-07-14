@@ -14,9 +14,9 @@ router.post("/", async (req, res) => {
     for (let data of formAnswer) {
       const associateQuestion = await QuestionData.findOne({ _id: data.id });
       if (associateQuestion.axis === "x") {
-        xValue += data.answer * associateQuestion.argument;
+        xValue += (data.answer - 2) * associateQuestion.argument;
       } else if (associateQuestion.axis === "y") {
-        yValue += data.answer * associateQuestion.argument;
+        yValue += (data.answer - 2) * associateQuestion.argument;
       }
       userData.results = {
         x: xValue,

@@ -1,4 +1,5 @@
 const fetch = require("node-fetch");
+const { response } = require("express");
 
 const listpertanyaanborse = [
   {
@@ -214,30 +215,37 @@ const listpertanyaankonpro = [
     agr: -1,
   },
 ];
-const postQuestion = async function (questionArg) {
+const postQuestion = (questionArg) => {
   let preBody = {
     number: questionArg.number,
-    axis: "y",
+    axis: "x",
     question: questionArg.question,
     argument: questionArg.agr,
   };
-  const response = await fetch("http://localhost:5000/api/getQuestions/post", {
+  return fetch("http://localhost:5000/api/getQuestions/post", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(preBody),
-  });
-  const data = response.json();
-  if (data.created) {
-    return true;
-  } else {
-    return false;
-  }
+  })
+    .then((response) => {
+      response.json();
+    })
+    .then((response) => {
+      if (response.created) {
+        return true;
+      } else {
+        return false;
+      }
+    })
+    .catch((err) => console.log(err));
 };
 
 const postQuestions = async (questionArray) => {
-  await questionArray.forEach((quest) => {
-    postQuestion(quest).then((res) => console.log(res));
-  });
+  for (question of questionArray) {
+    await postQuestion(question);
+  }
 };
+
+postQuestions(listpertanyaankonpro);
