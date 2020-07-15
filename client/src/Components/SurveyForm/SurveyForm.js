@@ -35,7 +35,7 @@ export class SurveyForm extends Component {
     }
   }
   componentDidMount() {
-    fetch("http://localhost:5000/api/getQuestions/listAll")
+    fetch("/api/getQuestions/listAll")
       .then((response) => response.json())
       .then((response) => {
         const listQuestions = response;
