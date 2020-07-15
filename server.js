@@ -1,16 +1,16 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-const dotenv = require("dotenv");
-
-dotenv.config();
+const config = require("./config/config");
 // //Disable CORS
 const cors = require("cors");
 app.use(cors());
 
+const { PORT, MONGO_URI, MONGO_DB_NAME } = config;
+
 //Connection to Database
 const mongoose = require("mongoose");
-const url = `${process.env.MONGO_URI}${process.env.MONGO_DB_NAME}`;
+const url = `${MONGO_URI}${MONGO_DB_NAME}`;
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.once("open", (_) => {
@@ -19,16 +19,12 @@ db.once("open", (_) => {
 db.on("error", (err) => {
   console.error("Connection Error:", err);
 });
-
+// app.get("/", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+// });
 //Body-Parser Reader
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-//Display index file
-app.get("/", (req, res) => {
-  res.sendFile("index.html");
-  res.status(200);
-});
 
 //Use the postUser Route
 const postUser = require("./routes/postUser");
@@ -52,5 +48,5 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 app.listen(process.env.PORT, () => {
-  console.log(`Listening on PORT ${process.env.PORT}`);
+  console.log(`Listening on PORT ${PORT}`);
 });

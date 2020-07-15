@@ -1,4 +1,4 @@
-const postFormUrl = "http://localhost:5000/api/postForm";
+const postFormUrl = "/api/postForm";
 
 const SendFormData = {
   handleFormData(formData) {

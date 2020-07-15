@@ -1,5 +1,5 @@
-const postUserUrl = "http://localhost:5000/api/postUser";
-const checkUserUrl = "http://localhost:5000/api/checkUser";
+const postUserUrl = "/api/postUser";
+const checkUserUrl = "/api/checkUser";
 
 const SendUserData = {
   handleUserData(userData) {
