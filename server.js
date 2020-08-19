@@ -39,6 +39,10 @@ app.use("/api/getQuestions", getQuestions);
 const postForm = require("./routes/postForm");
 app.use("/api/postForm", postForm);
 
+app.get("/portNumberServer", (res, req) => {
+  res.send(`SERVER PORT: ${PORT}`);
+});
+
 //Static File Setup
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
